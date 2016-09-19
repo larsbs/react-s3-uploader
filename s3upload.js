@@ -30,7 +30,7 @@ S3Upload.prototype.onError = function(status, file) {
 
 function cleanFilename(filename) {
   //return filename.replace(/[!\^`><{}\[\]()*#%'"~|&@:;$=+?\s\\\/\x00-\x1F\x7f’]+/ig, '_');
-  return filename.replace(/\W/ig, '_');
+  return filename.replace(/\W\./ig, '_');
 }
 
 function S3Upload(options) {
