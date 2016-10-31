@@ -148,7 +148,7 @@ S3Upload.prototype.uploadToS3 = function(file, signResult) {
         }
         var normalizedFileName = unorm.nfc(cleanFilename(file.name));
         var fileName = latinize(normalizedFileName);
-        xhr.setRequestHeader('Content-Disposition', disposition + '; filename=' + fileName);
+        xhr.setRequestHeader('Content-Disposition', disposition + '; filename="' + fileName + '"');
     }
     if (this.uploadRequestHeaders) {
         var uploadRequestHeaders = this.uploadRequestHeaders;

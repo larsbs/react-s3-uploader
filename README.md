@@ -56,10 +56,13 @@ modify the file (scaling the image for example), or abort the upload by not call
 When a file is chosen, it will immediately be uploaded to S3.  You can listen for progress (and
 create a status bar, for example) by providing an `onProgress` function to the component.
 
+### Extra props
+You can pass any extra props to `<ReactS3Uploader />` and these will be passed down to the final `<input />`. which means that if you give the ReactS3Uploader a className or a name prop the input will have those as well.
+
 Using custom function to get signedUrl
 ------------
 
-If can use custom function to get provide `signedUrl` directly to `s3uploader` by adding `getSignedUrl` prop. The function you provide should take `file` and `callback` arguments. Callback should be called with an object containing `signedUrl` key.
+It is possible to use a custom function to provide `signedUrl` directly to `s3uploader` by adding `getSignedUrl` prop. The function you provide should take `file` and `callback` arguments. Callback should be called with an object containing `signedUrl` key.
 
 ```javascript
 import ApiClient from './ApiClient';
@@ -162,10 +165,10 @@ storage = Fog::Storage.new(
 options = {path_style: true}
 headers = {"Content-Type" => params[:contentType], "x-amz-acl" => "public-read"}
 
-@url = storage.put_object_url(ENV['S3_BUCKET_NAME'], "user_uploads/#{params[:objectName]}", 15.minutes.from_now.to_time.to_i, headers, options)
+url = storage.put_object_url(ENV['S3_BUCKET_NAME'], "user_uploads/#{params[:objectName]}", 15.minutes.from_now.to_time.to_i, headers, options)
 
 respond_to do |format|
-  format.json { render json: {signedUrl: @url} }
+  format.json { render json: {signedUrl: url} }
 end
 ```
 
