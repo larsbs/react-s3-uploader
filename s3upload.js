@@ -79,7 +79,8 @@ S3Upload.prototype.executeOnSignedUrl = function(file, callback) {
     var fileName = latinize(normalizedFileName);
     var queryString = '?objectName=' + fileName + '&contentType=' + encodeURIComponent(file.type);
     if (this.signingUrlQueryParams) {
-        var signingUrlQueryParams = typeof this.signingUrlQueryParams === 'function' ? this.signingUrlQueryParams() : this.signingUrlQueryParams;
+      var signingUrlQueryParams = typeof this.signingUrlQueryParams === 'function' ?
+        this.signingUrlQueryParams() : this.signingUrlQueryParams;
         Object.keys(signingUrlQueryParams).forEach(function(key) {
             var val = signingUrlQueryParams[key];
             queryString += '&' + key + '=' + val;

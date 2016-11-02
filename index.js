@@ -1,2 +1,1 @@
-
-module.exports = require('./ReactS3Uploader');
+module.exports = require('./lib/ReactS3Uploader');
